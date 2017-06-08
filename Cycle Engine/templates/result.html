@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Moogle</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap.min.css')}}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+	.jumbotron {
+      background-color: #d6d6c2;
+      color: #000099;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .form-inline{
+	position: relative;
+    left: 30px;
+  }
+  .row{
+	position: relative;
+    left: 100px;
+    max-width:48em;
+  }
+
+  div.foo{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+.letter{
+  display: inline-block;
+  font-weight: 700;
+  font-size: 5em;
+  margin: 0.0em;
+  position: relative;
+  color: #00B4F1;
+  transform-style: preserve-3d;
+  perspective: 400;
+  z-index: 1;
+}
+.letter:before, .letter:after{
+  position:absolute;
+  content: attr(data-letter);
+  transform-origin: top left;
+  top:0;
+  left:0;
+}
+.letter, .letter:before, .letter:after{
+  transition: all 0.3s ease-in-out;
+}
+.letter:before{
+  color: #fff;
+  text-shadow:
+    -1px 0px 1px rgba(255,255,255,.8),
+    1px 0px 1px rgba(0,0,0,.8);
+  z-index: 3;
+  transform:
+    rotateX(0deg)
+    rotateY(-15deg)
+    rotateZ(0deg);
+}
+.letter:after{
+  color: rgba(0,0,0,.11);
+  z-index:2;
+  transform:
+    scale(1.08,1)
+    rotateX(0deg)
+    rotateY(0deg)
+    rotateZ(0deg)
+    skew(0deg,1deg);
+}
+.letter:hover:before{
+  color: #fafafa;
+  transform:
+    rotateX(0deg)
+    rotateY(-40deg)
+    rotateZ(0deg);
+}
+.letter:hover:after{
+  transform:
+    scale(1.08,1)
+    rotateX(0deg)
+    rotateY(40deg)
+    rotateZ(0deg)
+    skew(0deg,22deg);
+}
+	</style>
+</head>
+<body>
+<div class=" text-center static_pos">
+	  <div class="foo">
+           <span class="letter" data-letter="Z">Z</span>
+          <span class="letter" data-letter="I">I</span>
+          <span class="letter" data-letter="N">N</span>
+          <span class="letter" data-letter="G">G</span>
+          <span class="letter" data-letter="S">S</span>
+        </div>
+	  <form action="" class="form-inline" method="POST">
+		<div class="input-group">
+		  <input type="text" class="form-control" size="50" placeholder="Searching Tags" name="searchbar" required>
+		  <div class="input-group-btn">
+			  <input class = "btn btn-primary btn-block space" type = "submit" value="Search">
+		  </div>
+		</div>
+	  </form>
+	</div>
+	<div class="container">
+
+	<div class="row" style="height:800px;width:700px">
+
+		{% for eachResult in user %}
+		<dib class="inner-search-body">
+					<h4><a href="{{ eachResult['url'] }}"> {{ eachResult['title'] }}</a></h4>
+      				<div class="title-body">
+						<p  style="color: #006400;">{{ eachResult['url'] }}</p>
+						<p>{{ eachResult['paragraph_middle'] }}</p>
+					</div>
+		</dib>
+		<br>
+		{% endfor %}
+
+	</div>
+	</div>
+</body>
+<html>
